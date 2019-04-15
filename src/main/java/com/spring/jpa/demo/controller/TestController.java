@@ -48,5 +48,15 @@ public class TestController {
     public void deleteUserByAccount(String account){
         userService.deleteUerByAccount(account);
     }
+
+    @RequestMapping(value = "/update")
+    public UserInfo updateUserAccountByName(String name){
+        return userService.updateUserByName(name);
+    }
+
+    @RequestMapping(value = "/updateById")
+    public UserInfo updateUserNameById(long id,@RequestBody UserInfo userInfo){
+        return userService.updateUserById(id,userInfo);
+    }
 }
 

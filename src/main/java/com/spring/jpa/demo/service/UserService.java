@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -35,5 +36,28 @@ public class UserService {
 
     public void deleteUerByAccount(String account){
         userInfoRepository.deleteByAccount(account);
+    }
+
+//    public UserInfo updateUserById(long id){
+//        UserInfo u = userInfoRepository.findById(id);
+//        u.setAccount("lan");
+//        return userInfoRepository.save(u);
+//    }
+    public UserInfo updateUserByName(String name){
+        UserInfo u = userInfoRepository.findByName(name);
+        u.setAccount("lan");
+        return userInfoRepository.save(u);
+    }
+    public UserInfo updateUserById(long id,UserInfo userInfo){
+        Optional<UserInfo> u = userInfoRepository.findById(id);
+        // u.setName(name)
+        // u = userInfo;
+        if(u.isPresent()){
+            System.out.println("此人存在于用户列表中！");
+            userInfo.setId(id);
+        }else{
+            System.out.println("查无此人");
+        }
+        return  userInfoRepository.save(userInfo);
     }
 }

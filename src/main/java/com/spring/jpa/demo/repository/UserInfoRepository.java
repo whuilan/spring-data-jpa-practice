@@ -7,9 +7,12 @@ import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface UserInfoRepository extends JpaRepository<UserInfo,Long> {
+
+    Optional<UserInfo> findById(long id);
     UserInfo findByName(String name);
     List<UserInfo> findAllByPassword(String password);
 
